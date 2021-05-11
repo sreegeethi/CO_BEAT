@@ -1,0 +1,10 @@
+body {
+    background-color: #568692;
+}
+#xray-input{
+  padding: 1em;
+}
+#prediction-result{
+  margin-top: 2em;
+  color: rgb(14, 45, 150);
+}

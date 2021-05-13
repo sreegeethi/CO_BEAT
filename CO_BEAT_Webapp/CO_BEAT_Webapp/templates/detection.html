@@ -25,9 +25,11 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h3 class="card-title">Upload X-RAY </h3>
-                            <input type="file" name="sentFile" />
+                            <input type="file" name="sentFile" required accept="image/*" />
                             <input type="submit" name="submit" value="Upload" />
+
                             <p id="prediction-result">{{pred}}</p>
+                            </p>
                         </div>
                     </div>
                 </div>

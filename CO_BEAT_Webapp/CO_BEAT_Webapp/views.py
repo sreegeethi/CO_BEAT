@@ -13,12 +13,13 @@ def xray_pred(request):
     if request.method=="POST":
         f=request.FILES['sentFile']
         response = {}
-        file_name = default_storage.save("xray.png", f)
+        file_name = default_storage.save(f.name, f)
         file_url = default_storage.url(file_name)
         media_dir = os.path.dirname(os.path.dirname(__file__))+'/media'
         image = load_img((os.path.join(media_dir,file_name)), target_size=(224, 224))
         image = np.array(image)/255
         image = image.reshape(-1, 224, 224, 3)
+
         #Load the model
         model=load_model(os.path.dirname(__file__)+'/model.h5')
         prediction = model.predict(image)
@@ -28,6 +29,8 @@ def xray_pred(request):
         else:
             result="COVID DETECTED"
         
+        response['pred']=result
+
         response['pred']=result
         return render(request,'detection.html',response)
     else:

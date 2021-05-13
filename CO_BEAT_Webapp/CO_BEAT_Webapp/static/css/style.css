@@ -6,5 +6,6 @@ body {
 }
 #prediction-result{
   margin-top: 2em;
-  color: rgb(14, 45, 150);
+  font-size: 1.3em;
+  color: #6d10c4;
 }

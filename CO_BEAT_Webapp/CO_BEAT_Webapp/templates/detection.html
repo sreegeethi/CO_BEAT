@@ -28,7 +28,16 @@
                             <input type="file" name="sentFile" required accept="image/*" />
                             <input type="submit" name="submit" value="Upload" />
 
-                            <p id="prediction-result">{{pred}}</p>
+                            <p id="prediction-result"><span>{{pred}}</span></p>
+                            <p>Steps:<br>
+                                1.Select an image from your device using the button on the left and then click on the
+                                Upload button.<br>
+                                2.The results will be displayed within a few seconds.<br><br>
+
+                                Note: The result shown may not be correct always.Our model has an accuracy of 96%
+                                but is subject to failure for certain cases.
+                                Please continue to follow all the guidelines and stay safe!
+                            </p>
                             </p>
                         </div>
                     </div>

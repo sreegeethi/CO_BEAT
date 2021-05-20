@@ -25,6 +25,7 @@ urlpatterns = [
     path('',views.home,name='home'),
     path('aboutcovid/',views.about_covid,name='about_covid'),
     path('detection/',views.xray_pred,name='xray_pred'),
+    path('dashboard/',views.dashboard,name='dashboard'),
 ]
 
 if settings.DEBUG:

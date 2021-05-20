@@ -5,6 +5,7 @@ from tensorflow.keras.preprocessing.image import load_img
 import numpy as np
 from tensorflow.keras.models import load_model
 from django.core.files.storage import default_storage
+import requests
 
 def home(request):
     return render(request,'index.html')
@@ -40,4 +41,41 @@ def xray_pred(request):
         return render(request,'detection.html')
         
         
+def dashboard(request):
+    url = "https://corona-virus-world-and-india-data.p.rapidapi.com/api_india"
+
+    headers = {
+        'x-rapidapi-key': "bf587f137fmshbd08cf4ce75ac18p1ac3a8jsn727586255fb6",
+        'x-rapidapi-host': "corona-virus-world-and-india-data.p.rapidapi.com"
+        }
+
+    r = requests.request("GET", url, headers=headers).json()
+    total=r['total_values']['active']
+    recover=r['total_values']['recovered']
+    confirm=r['total_values']['confirmed']
+    deaths=r['total_values']['deaths']
+    time=r['total_values']['lastupdatedtime']
+    s=[[]]
+    state=[]
+    s_active=[]
+    s_recover=[]
+    s_confirm=[]
+    s_deaths=[]
+    for each in r['state_wise']:
+        state.append(each)
+        a =int(r['state_wise'][each]['active'])
+        print(a)
+        s_active.append(a)
+        d =int(r['state_wise'][each]['recovered'])
+        s_recover.append(d)
+        c = int( r['state_wise'][each]['deaths'])
+        s_deaths.append(c)
+        b = int( r['state_wise'][each]['confirmed'])
+        s_confirm.append(b)
+
+    for i in range(len(state)):
+        s.append([s_confirm[i],s_active[i],s_deaths[i],s_recover[i],state[i]])
+    # print(s_confirm)
+
+    return render(request,'covid_dashboard.html',{'s':s,'total':total,'recover':recover,'confirm':confirm,'death':deaths,'time':time, 'state':state,'s_active':s_active,'s_recover':s_recover,'s_deaths':s_deaths,'s_confirm':s_confirm})
 

@@ -16,7 +16,10 @@
     <!--<link href="{% static 'css/styles.css' %}" rel="stylesheet" /> -->
     <style>
         body {
-            background-color: #a5d3cd;
+            /* background-color: #a5d3cd; */
+            background-color: #87a0b2;
+            position: relative;
+            min-height: 100vh;
         }
 
         footer {
@@ -33,11 +36,6 @@
         .cards>a {
             width: 100%;
             border-radius: 0;
-        }
-
-        .btn-color {
-            background-color: rgb(54, 43, 43);
-            color: white;
         }
     </style>
 </head>
@@ -68,7 +66,7 @@
                         <h4 class="card-title">About COVID-19</h4>
                         <p class="card-text">Read about the common symptoms,prevention measure etc</p>
                     </div>
-                    <div class="card-footer cards"><a class="btn btn-color" href="aboutcovid/">Find Out
+                    <div class="card-footer cards"><a class="btn btn-dark" href="aboutcovid/">Find Out
                             More!</a>
                     </div>
                 </div>
@@ -81,7 +79,8 @@
                         <h4 class="card-title">Data Dashboard</h4>
                         <p class="card-text">Updated information and statics about covid cases across India</p>
                     </div>
-                    <div class="card-footer cards"><a class="btn btn-color" href="dashboard/">Find Out More!</a></div>
+                    <div class="card-footer cards"><a class="btn btn-dark" href="dashboard/">Find Out
+                            More!</a></div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-4">
@@ -91,7 +90,7 @@
                         <h4 class="card-title">Chest-Xray based detection</h4>
                         <p class="card-text">AI based tool to detect Covid 19 based on chest-xray</p>
                     </div>
-                    <div class="card-footer cards"><a class="btn btn-color" href="detection/">Find Out More!</a></div>
+                    <div class="card-footer cards"><a class="btn btn-dark" href="detection/">Find Out More!</a></div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-4">
@@ -102,11 +101,12 @@
                         <p class="card-text">Tool to predict the chances of covid based on cough sound.
                         </p>
                     </div>
-                    <div class="card-footer cards"><a class="btn btn-color" href="#">Find Out More!</a></div>
+                    <div class="card-footer cards"><a class="btn btn-dark" href="#">Find Out More!</a></div>
                 </div>
             </div>
         </div>
     </div>
+    <br>
     <!-- Footer-->
     <footer class="py-1 bg-dark">
         <div class="container">

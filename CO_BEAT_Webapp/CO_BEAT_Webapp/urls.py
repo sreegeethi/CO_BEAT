@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name='home'),
     path('detection/',views.xray_pred,name='xray_pred'),
+    path('dashboard/',views.dashboard,name='dashboard'),
 ]
 
 if settings.DEBUG:

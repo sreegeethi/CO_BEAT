@@ -14,6 +14,32 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <!--<link href="{% static 'css/styles.css' %}" rel="stylesheet" /> -->
+    <style>
+        body {
+            background-color: #a5d3cd;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 2em;
+        }
+
+        .cards {
+            padding: 0;
+        }
+
+        .cards>a {
+            width: 100%;
+            border-radius: 0;
+        }
+
+        .btn-color {
+            background-color: rgb(54, 43, 43);
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -22,61 +48,68 @@
     <div class="container">
         <!-- Jumbotron Header-->
         <header class="jumbotron my-4">
-            <h1 class="display-3">A Warm Welcome!</h1>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt
-                possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam
-                repellat.</p>
-            <a class="btn btn-primary btn-lg" href="#!">Call to action!</a>
+            <h1 class="display-4">Let's beat covid-19!</h1>
+            <p class="lead">
+                With united efforts we can fight the Coronavirus.
+                If you or any of your family member has tested positive for Covid-19
+                and had visited any public places like Malls,supermarkets etc in the last 48 hours please fill a
+                form <a>here</a> so that we can provide alerts and hence prevent the spread.
+            </p>
+
+            <a class="btn btn-primary btn-lg" href="#!">Check location wise alerts</a>
         </header>
         <!-- Page Features-->
         <div class="row text-center">
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card h-100">
-                    <img class="card-img-top" src="https://via.placeholder.com/500x325" alt="..." />
+                    <img class="card-img-top" src="{% static 'assets/aboutco.jpg' %}" alt="Coronavirus" />
                     <div class="card-body">
                         <h4 class="card-title">About COVID-19</h4>
                         <p class="card-text">Read about the common symptoms,prevention measure etc</p>
                     </div>
-                    <div class="card-footer"><a class="btn btn-primary" href="#aboutcovid/">Find Out More!</a></div>
+                    <div class="card-footer cards"><a class="btn btn-color" href="aboutcovid/">Find Out
+                            More!</a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card h-100">
-                    <img class="card-img-top" src="https://via.placeholder.com/500x325" alt="..." />
+                    <img class="card-img-top" src="{% static 'assets/chart.jpg' %}"
+                        alt="Bar graph for representation" />
+                    <div class="card-body">
+                        <h4 class="card-title">Data Dashboard</h4>
+                        <p class="card-text">Updated information and statics about covid cases across India</p>
+                    </div>
+                    <div class="card-footer cards"><a class="btn btn-color" href="#!">Find Out More!</a></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="{% static 'assets/lung.jpg' %}" alt="xray representation" />
                     <div class="card-body">
                         <h4 class="card-title">Chest-Xray based detection</h4>
                         <p class="card-text">AI based tool to detect Covid 19 based on chest-xray</p>
                     </div>
-                    <div class="card-footer"><a class="btn btn-primary" href="detection/">Find Out More!</a></div>
+                    <div class="card-footer cards"><a class="btn btn-color" href="detection/">Find Out More!</a></div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card h-100">
-                    <img class="card-img-top" src="https://via.placeholder.com/500x325" alt="..." />
+                    <img class="card-img-top" src="{% static 'assets/audio.jpg' %}" alt="Audio signal" />
                     <div class="card-body">
-                        <h4 class="card-title">Data Dashboard</h4>
-                        <p class="card-text">Updated information and statics about covid cases</p>
-                    </div>
-                    <div class="card-footer"><a class="btn btn-primary" href="#!">Find Out More!</a></div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <img class="card-img-top" src="https://via.placeholder.com/500x325" alt="..." />
-                    <div class="card-body">
-                        <h4 class="card-title">Hospital resources Information</h4>
-                        <p class="card-text">Count of the number of beds,oxygen cylinders available accross hospitals.
+                        <h4 class="card-title">Cough sound based detection</h4>
+                        <p class="card-text">Tool to predict the chances of covid based on cough sound.
                         </p>
                     </div>
-                    <div class="card-footer"><a class="btn btn-primary" href="#!">Find Out More!</a></div>
+                    <div class="card-footer cards"><a class="btn btn-color" href="#!">Find Out More!</a></div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Footer-->
-    <footer class="py-5 bg-dark">
+    <footer class="py-1 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright © Your Website 2021</p>
+            <p class="m-0 text-center text-white">Copyright © Co-beat 2021</p>
         </div>
     </footer>
     <!-- Bootstrap core JS-->

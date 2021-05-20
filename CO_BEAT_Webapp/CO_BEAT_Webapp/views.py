@@ -9,6 +9,9 @@ from django.core.files.storage import default_storage
 def home(request):
     return render(request,'index.html')
 
+def about_covid(request):
+    return render(request,'aboutcovid.html')
+
 def xray_pred(request):
     if request.method=="POST":
         f=request.FILES['sentFile']

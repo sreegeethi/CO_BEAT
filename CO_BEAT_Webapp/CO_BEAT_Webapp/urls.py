@@ -23,6 +23,7 @@ from CO_BEAT_Webapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name='home'),
+    path('aboutcovid/',views.about_covid,name='about_covid'),
     path('detection/',views.xray_pred,name='xray_pred'),
 ]
 

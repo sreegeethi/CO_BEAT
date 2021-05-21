@@ -26,6 +26,7 @@ urlpatterns = [
     path('aboutcovid/',views.about_covid,name='about_covid'),
     path('detection/',views.xray_pred,name='xray_pred'),
     path('dashboard/',views.dashboard,name='dashboard'),
+    path('cough-sound-covid-detection/',views.cough_sound_pred,name='cough_sound_pred')
 ]
 
 if settings.DEBUG:

@@ -13,6 +13,9 @@ def home(request):
 def about_covid(request):
     return render(request,'aboutcovid.html')
 
+def cough_sound_pred(request):
+    return render(request,'cough_sound_detection.html')
+
 def xray_pred(request):
     if request.method=="POST":
         f=request.FILES['sentFile']

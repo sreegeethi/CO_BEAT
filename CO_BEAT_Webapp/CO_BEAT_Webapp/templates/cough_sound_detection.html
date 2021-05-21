@@ -19,26 +19,30 @@
     {% include 'navbar.html' %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="container mt-5" id="xray-input">
+        <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-12">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h3 class="card-title">Record cough sound </h3>
+                            <h3 class="card-title">Record/Upload cough sound </h3>
 
-                            <input type="file" name=coughSound accept="audio/*;capture=microphone"></input>
+                            <input type="file" name=coughSound required accept="audio/*;capture=microphone"></input>
                             <input type="submit" name="submit" value="Upload" />
 
-                            <p id="prediction-result"><span>{{pred}}</span></p>
-                            <p>Steps:<br>
+                            {% if pred == 1.0 %}
+                            <p class="alert alert-success mt-3">COVID NOT DETECTED</p>
+                            {% elif pred == 0.0 %}
+                            <p class="alert alert-danger mt-3">COVID DETECTED</p>
+                            {% endif %}
+
+                            <p class="mt-3">Steps:<br>
                                 1.Select an audio file from your device using the Choose file/Browse button on the left
                                 and
                                 then click on the
                                 Upload button.<br>
                                 2.The results will be displayed within a few seconds.<br><br>
 
-                                Note: The result shown may not be correct always.Our model has an accuracy of 96%
-                                and is subject to failure for certain cases.
+                                Note: The result shown may not be accurate always.
                                 Please continue to follow all the guidelines and stay safe!
                             </p>
                             </p>

@@ -2,6 +2,7 @@ from django.shortcuts import render
 import keras
 import os
 from tensorflow.keras.preprocessing.image import load_img
+from pyAudioAnalysis import audioTrainTest as aT
 import numpy as np
 from tensorflow.keras.models import load_model
 from django.core.files.storage import default_storage
@@ -14,14 +15,25 @@ def about_covid(request):
     return render(request,'aboutcovid.html')
 
 def cough_sound_pred(request):
-    return render(request,'cough_sound_detection.html')
+    if request.method=="POST":
+        f=request.FILES['coughSound']
+        response = {}
+        file_name = default_storage.save(f.name, f)
+        media_dir = os.path.dirname(os.path.dirname(__file__))+'/media'
+        audio_file = os.path.join(media_dir,file_name)
+        model=os.path.dirname(__file__)+'/svm_model'
+        pred = aT.file_classification(audio_file, model ,"svm")
+        print(pred)
+        response['pred']=pred[0]
+        return render(request,'cough_sound_detection.html',response)
+    else:
+        return render(request,'cough_sound_detection.html')
 
 def xray_pred(request):
     if request.method=="POST":
         f=request.FILES['sentFile']
         response = {}
         file_name = default_storage.save(f.name, f)
-        file_url = default_storage.url(file_name)
         media_dir = os.path.dirname(os.path.dirname(__file__))+'/media'
         image = load_img((os.path.join(media_dir,file_name)), target_size=(224, 224))
         image = np.array(image)/255

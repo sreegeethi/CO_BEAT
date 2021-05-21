@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Covid Info</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+      
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="http://d3js.org/topojson.v1.min.js"></script>
+        <script src="https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/datamaps.none.js"></script>
+
+        <style>
+            .size{
+                width: 50% !important;
+                height: 450px !important;
+            }
+            .box{
+                text-align: center;
+                transition: transform;
+                width: 100%;
+                height: relative;
+            }
+
+            .box div:hover{
+                transform: scale(1.05);
+            }
+            .table1{
+                width: 100% !important;
+                position: relative !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="mt-4">Dashboard</h1>
+            <p style="text-align: right; font-size: small;">Last-updated-time: <b>{{time}} </b></p>
+            <div class="row box">
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-primary text-white mb-4">
+                        <h5 class="mt-2">Total cases</h5>
+                        <hr>
+                        <h1>{{total}}</h1>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-warning text-white mb-4">
+                        <h5 class="mt-2">Confirmed Cases</h5>
+                        <hr>
+                        <h1>{{confirm}}</h1>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6" >
+                    <div class="card bg-success text-white mb-4">
+                        <h5 class="mt-2"> Total Recovered</h5>
+                        <hr>
+                        <h1>{{recover}}</h1>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-danger text-white mb-4">
+                        <h5 class="mt-2">Total Deaths</h5>
+                        <hr>
+                        <h1>{{death}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="display: block; position: relative;">
+            <!-- <br><br><br> -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <h6 style="display: block;">Day-Wise chart</h6> 
+                        </div>
+                        <div class="col-12">
+                            <canvas id="mychart"  style="display: block;" class="size"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12" style="display: inline;">
+                    <div id="india" style="margin:0; height: 600px; width: 100%;"></div>
+
+                    <script> 
+                        $(document).ready(function(){
+                                init();           
+                                function init(){
+                                    var url ="https://api.rootnet.in/covid19-in/stats/latest";
+                                    $.get(url,function(data){
+                                        console.log(data.data.regional);
+                                        var b=data.data.regional;
+                                        var total_state_data=[];
+                                        var i,k;
+                                        for (i=0;i<b.length;i++)
+                                        {
+                                            k=data.data.regional[i].totalConfirmed;
+                                            total_state_data.push(k);
+                                        }           
+                                        console.log(total_state_data);
+                    
+                            var bubble_map = new Datamap({
+                                element: document.getElementById('india'),
+                                scope: 'india',
+                                geographyConfig: {
+                                    popupOnHover: true,
+                                    highlightOnHover: true,
+                                    borderColor: '#AF6FC6',
+                                    borderWidth: 0.5,
+                                    dataUrl: 'https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/india.topo.json'
+                                    //dataJson: topoJsonData
+                                },
+                                fills: {
+                                    'MAJOR': '#5491CA',
+                                    'MEDIUM': '#5491CA',
+                                    'MINOR': '#5491CA',
+                                    defaultFill: '#CADFDF'
+                                },
+                                // fills: {
+                                //     'MAJOR': '#306596',
+                                //     'MEDIUM': '#0fa0fa',
+                                //     'MINOR': '#bada55',
+                                //     defaultFill: '#CADFDF'
+                                // },
+                               
+                                setProjection: function (element) {
+                                    var projection = d3.geo.mercator()
+                                        .center([52.9629, 30.5937]) // always in [East Latitude, North Longitude]
+                                        .scale(800);
+                                    var path = d3.geo.path().projection(projection);
+                                    return { path: path, projection: projection };
+                                }
+                            });
+                            let bubbles = [
+                                {
+                                    centered: "AN",
+                                    fillKey: "MINOR",
+                                    radius: 5,
+                                    state: "Andaman & Nicobar Island",
+                                    caes:total_state_data[0]
+                                },
+                                {
+                                    centered: "AP",
+                                    fillKey: "MAJOR",
+                                    radius: 5,
+                                    state: "Andhra Pradesh",
+                                    caes:total_state_data[1]
+                                },
+                                {
+                                    centered: "AR",
+                                    fillKey: "MAJOR",
+                                    radius: 5,
+                                    state: "Anrunachal Pradesh",
+                                    caes:total_state_data[2]
+                                },
+                                {
+                                    centered: "AS",
+                                    fillKey: "MAJOR",
+                                    radius: 5,
+                                    state: "Assam",
+                                    caes:total_state_data[3]
+                                },
+                                {
+                                    centered: "BR",
+                                    fillKey: "MAJOR",
+                                    radius: 5,
+                                    state: "Bihar",
+                                    caes:total_state_data[4]
+                                },
+                                {
+                                    centered: "CT",
+                                    fillKey: "MAJOR",
+                                    radius: 5,
+                                    state: "Chattisgarh",
+                                    caes:total_state_data[6]
+                                },
+                                {
+                                    centered: "PY",
+                                    fillKey: "MAJOR",
+                                    radius: 6,
+                                    state: "PuduCherry",
+                                    caes:total_state_data[26]
+                                },
+                                {
+                                    centered: "PB",
+                                    fillKey: "MEDIUM",
+                                    radius: 8,
+                                    state: "Punjab",
+                                    caes:total_state_data[27]
+                                },
+                                {
+                                    centered: "RJ",
+                                    fillKey: "MINOR",
+                                    radius: 7,
+                                    state: "Rajasthan",
+                                    caes:total_state_data[28]
+                                },
+                                {
+                                    centered: "SK",
+                                    fillKey: "MEDIUM",
+                                    radius: 4,
+                                    state: "Sikkim",
+                                    caes:total_state_data[29]
+                                },
+                                {
+                                    centered: "TN",
+                                    fillKey: "MAJOR",
+                                    radius: 7,
+                                    state: "Tamil Nadu",
+                                    caes:total_state_data[30]
+                                },
+                                {
+                                    centered: "CH",
+                                    fillKey: "MINOR",
+                                    radius: 5,
+                                    state: "Chandigarh",
+                                    caes:total_state_data[5]
+                                },
+                                {
+                                    centered: "TS",
+                                    fillKey: "MINOR",
+                                    radius: 7,
+                                    state: "Telangana",
+                                    caes:total_state_data[31]
+                                },
+                                {
+                                    centered: "TR",
+                                    fillKey: "MINOR",
+                                    radius: 7,
+                                    state: "Tripura",
+                                    caes:total_state_data[32]
+                                },
+                                {
+                                    centered: "UP",
+                                    fillKey: "MINOR",
+                                    radius: 8,
+                                    state: "Uttar Pradesh",
+                                    caes:total_state_data[33]
+                                },
+                                {
+                                    centered: "UK",
+                                    fillKey: "MINOR",
+                                    radius: 8,
+                                    state: "Uttarkhand",
+                                    caes:total_state_data[34]
+                                },
+                                {
+                                    centered: "WB",
+                                    fillKey: "MEDIUM",
+                                    radius: 7,
+                                    state: "West Bengal",
+                                    caes:total_state_data[35]
+                                },
+                                {
+                                    centered: "OD",
+                                    fillKey: "MINOR",
+                                    radius: 8,
+                                    state: "Odisha",
+                                    caes:total_state_data[25]
+                                },
+                                {
+                                    centered: "DN",
+                                    fillKey: "MINOR",
+                                    radius: 4,
+                                    state: "Dagara & Nagar Hills & Daman & Diu",
+                                    caes:total_state_data[7]
+                                },
+                                {
+                                    centered: "GA",
+                                    fillKey: "MINOR",
+                                    radius: 4,
+                                    state: "Goa",
+                                    caes:total_state_data[9]
+                                },
+                                {
+                                    centered: "GJ",
+                                    fillKey: "MINOR",
+                                    radius: 7,
+                                    state: "Gujarath",
+                                    caes:total_state_data[10]
+                                },
+                                {
+                                    centered: "HR",
+                                    fillKey: "MINOR",
+                                    radius: 7,
+                                    state: "Haryana",
+                                    caes:total_state_data[11]
+                                },
+                                {
+                                    centered: "HP",
+                                    fillKey: "MINOR",
+                                    radius: 8,
+                                    state: "Himachal Pradesh",
+                                    caes:total_state_data[12]
+                                },
+                    
+                                {
+                                    centered: "JK",
+                                    fillKey: "MINOR",
+                                    radius: 8,
+                                    state: "Jammu & Kashmir",
+                                    caes:total_state_data[13]
+                                },
+                                {
+                                    centered: "JH",
+                                    fillKey: "MINOR",
+                                    radius: 7,
+                                    state: "Jharkhand",
+                                    caes:total_state_data[14]
+                                },
+                                {
+                                    centered: "KA",
+                                    fillKey: "MEDIUM",
+                                    radius: 7,
+                                    state: "Karnataka",
+                                    caes:total_state_data[15]
+                                },
+                                {
+                                    centered: "KL",
+                                    fillKey: "MINOR",
+                                    radius: 7,
+                                    state: "Kerala",
+                                    caes:total_state_data[16]
+                                },
+                                {
+                                    centered: "LD",
+                                    fillKey: "MINOR",
+                                    radius: 8,
+                                    state: "Lakshadweep",
+                                    caes:total_state_data[18]
+                                },
+                                {
+                                    centered: "MP",
+                                    fillKey: "MINOR",
+                                    radius: 8,
+                                    state: "Madhya Pradesh",
+                                    caes:total_state_data[19]
+                                },
+                                {
+                                    centered: "MH",
+                                    fillKey: "MINOR",
+                                    radius: 8,
+                                    state: "Maharastra",
+                                    caes:total_state_data[20]
+                                },
+                                {
+                                    centered: "MN",
+                                    fillKey: "MINOR",
+                                    radius: 8,
+                                    state: "Manipur",
+                                    caes:total_state_data[21]
+                                },
+                                {
+                                    centered: "ML",
+                                    fillKey: "MINOR",
+                                    radius: 8,
+                                    state: "Meghalaya",
+                                    caes:total_state_data[22]
+                                },
+                                {
+                                    centered: "MZ",
+                                    fillKey: "MINOR",
+                                    radius: 8,
+                                    state: "Mizoram",
+                                    caes:total_state_data[23]
+                                },
+                                {
+                                    centered: "NL",
+                                    fillKey: "MINOR",
+                                    radius: 8,
+                                    state: "Nagaland",
+                                    caes:total_state_data[24]
+                                },
+                                {
+                                    centered: "DL",
+                                    fillKey: "MINOR",
+                                    radius: 6,
+                                    state: "Delhi",
+                                    caes:total_state_data[8]
+                                },
+                            ]
+                            // // ISO ID code for city or <state></state>
+                            setTimeout(() => { // only start drawing bubbles on the map when map has rendered completely.
+                                bubble_map.bubbles(bubbles, {
+                                    popupTemplate: function (geo, data) {
+                                        return `<div class="hoverinfo">${data.state}, Total-Cases: ${data.caes}</div>`;
+                                    }
+                                });
+                            }, 1000);
+                            })
+                            }   
+                            })
+                    </script>
+
+                </div>
+            </div>
+
+            
+            <!-- Table data -->
+            <div class="row table1 mt-5">
+                <div class="card mb-5 table1">
+                    <div class="card-header">
+                        <i class="fas fa-table mr-1"></i>
+                        DataTable Example
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" style="height: 600px;overflow: scroll;">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>State</th>
+                                        <th>Active cases</th>
+                                        <th>Confirmed cases</th>
+                                        <th>Deaths</th>
+                                        <th>Recovered</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Age</th>
+                                        <th>Start date</th>
+                                        
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    {% for a in s %}
+                                    <tr>
+                                        <td>{{a.4}}</td>
+                                        <td>{{a.1}}</td>
+                                        <td>{{a.0}}</td>
+                                        <td>{{a.2}}</td>
+                                        <td>{{a.3}}</td>                                      
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                <!-- </div> -->
+            </div>
+            </div>
+
+        </div>
+    </body>
+
+    <!-- script for chart -->
+    <script>
+        $(document).ready(function(){
+        var url="https://api.covid19india.org/data.json";
+
+        $.getJSON(url,function(data){
+                var a=data.cases_time_series.length;
+                var i;
+                var total_daywise=[]
+                var total_recovered=[]
+                var date=[]
+                var total_deaths=[]
+                var m=a-10;
+                
+                for(i=a;i>m;i--){                  
+                    var k=data.cases_time_series[i-1].totalconfirmed;
+                        total_daywise.push(k);
+                    k=data.cases_time_series[i-1].totalrecovered;
+                        total_recovered.push(k);
+                    k=data.cases_time_series[i-1].totaldeceased;
+                        total_deaths.push(k);
+                    k=data.cases_time_series[i-1].date;
+                        date.push(k);                
+                }       
+                total_daywise.reverse();
+                total_deaths.reverse();
+                total_recovered.reverse();
+                date.reverse();
+            
+            var mychart= document.getElementById("mychart").getContext('2d');
+
+            var chart= new Chart(mychart,{
+                type:'line',             
+                data:{
+                    labels:date,                   
+                    datasets: [
+                        {
+                            data:total_daywise,
+                            pointRadius: 8,
+                            label: 'Total Cases',
+                            fill: false,
+                            borderColor: "#55bae7",                         
+                            backgroundColor: "#55bae7",
+                            pointBackgroundColor: "#55bae7",
+                            pointBorderColor: "#55bae7",
+                            pointHoverBackgroundColor: "#55bae7",
+                            pointHoverBorderColor: "#55bae7",
+                        },
+                        {
+                            label:"Total recovered",
+                            data:total_recovered,
+                            pointBackgroundColor:"#2ecc71",
+                            pointHoverBackgroundColor: "#2ecc71",
+                            pointHoverBorderColor: "#2ecc71",
+                            borderColor: "#2ecc71",                         
+                            backgroundColor: "#2ecc71",
+                            pointBorderColor: "#2ecc71",
+                            fill: false,
+                            pointRadius: 8,
+                            minBarLength :100,
+                        },
+                        {
+                            label:"Total Deaths",
+                            data:total_deaths,
+                            pointBackgroundColor:"red",
+                            pointBackgroundColor:"#F06350",
+                            pointHoverBackgroundColor: "#F06350",
+                            pointHoverBorderColor: "#F06350",
+                            borderColor: "#F06350",                         
+                            backgroundColor: "#F06350",
+                            pointBorderColor: "#F06350",
+                            fill: false,
+                            pointRadius: 8,
+                            minBarLength :100,
+                        }
+                    ]
+                },
+                options:{}    
+            })
+        })
+        })
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+</html>

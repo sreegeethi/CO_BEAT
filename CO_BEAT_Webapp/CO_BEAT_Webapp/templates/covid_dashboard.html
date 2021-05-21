@@ -42,6 +42,7 @@
 </head>
 
 <body>
+    {% include 'navbar.html' %}
     <div class="container">
         <h1 class="mt-4">Dashboard</h1>
         <p style="text-align: right; font-size: small;">Last-updated-time: <b>{{time}} </b></p>
@@ -95,6 +96,11 @@
                     <h1>Sindhu is from nitk.Work is worship.</h1>
                 </div> -->
             <div class="col-md-5" style="display: inline;">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="mt-3" style="display: block; width: 50%; text-align: center;">India</h3>
+                    </div>
+                    <div class="col-12">
                 <div id="india" style="margin:0; height: 520px; width: 100%;"></div>
 
                 <script>
@@ -407,6 +413,7 @@
                 </script>
 
             </div>
+            </div></div>
         </div>
 
 
@@ -484,13 +491,16 @@
             var mychart = document.getElementById("mychart").getContext('2d');
 
             var chart = new Chart(mychart, {
+                scaleFontColor: "white",
                 type: 'line',
+
                 data: {
                     labels: date,
+                    labelFontColor: "red",
                     datasets: [
                         {
                             data: total_daywise,
-                            pointRadius: 5,
+                            pointRadius: 4,
                             label: 'Total Cases',
                             fill: false,
                             borderColor: "#55bae7",
@@ -529,7 +539,33 @@
                         }
                     ]
                 },
-                options: {}
+                options: {
+                    legend: {
+                        labels: {
+                            fontColor: "black",
+                            fontSize: 12
+                        }
+                    },
+                    scales: {
+                yAxes: [{
+                    ticks: {
+                        fontColor: "black",
+                        fontSize: 12,
+                        // stepSize: 1,
+                        beginAtZero: true
+                    }
+                    }],
+                    xAxes: [{
+                    ticks: {
+                        fontColor: "black",
+                        fontSize: 12,
+                        // stepSize: 1,
+                        beginAtZero: true
+                    }
+                    }],
+                }
+                    
+                }
             })
         })
     })

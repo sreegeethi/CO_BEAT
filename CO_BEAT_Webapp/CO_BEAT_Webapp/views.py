@@ -65,16 +65,17 @@ def dashboard(request):
     s_confirm=[]
     s_deaths=[]
     for each in r['state_wise']:
-        state.append(each)
-        a =int(r['state_wise'][each]['active'])
-        print(a)
-        s_active.append(a)
-        d =int(r['state_wise'][each]['recovered'])
-        s_recover.append(d)
-        c = int( r['state_wise'][each]['deaths'])
-        s_deaths.append(c)
-        b = int( r['state_wise'][each]['confirmed'])
-        s_confirm.append(b)
+        if int(r['state_wise'][each]['active'])!=0:
+            state.append(each)
+            a =int(r['state_wise'][each]['active'])
+            print(a)
+            s_active.append(a)
+            d =int(r['state_wise'][each]['recovered'])
+            s_recover.append(d)
+            c = int( r['state_wise'][each]['deaths'])
+            s_deaths.append(c)
+            b = int( r['state_wise'][each]['confirmed'])
+            s_confirm.append(b)
 
     for i in range(len(state)):
         s.append([s_confirm[i],s_active[i],s_deaths[i],s_recover[i],state[i]])

@@ -1,9 +1,8 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
-   <meta charset="utf-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About Covid-19</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -49,20 +48,17 @@
     .p {
       padding: 10px;
     }
-	@media screen and (max-width: 800px) {
-  .left, .main, .right {
-    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
-  }}
   </style>
 </head>
 
 <body>
   {% include 'navbar.html' %}
+  <div claass="container">
   <div class="row">
-    <div class="column">
+    <div class="col-md-6">
       <h2>Symptoms</h2>
       <div class="card">
-        <img src= "{% static 'assets/covid19.jpg' %}" alt="Covid" style="width:10%;  height: 10%;">
+        <img src="{% static 'assets/covid19.jpg' %}" alt="Covid" style="width:10%;  height: 10%;">
         <p>Fever or chills</p>
         <p>Cough</p>
         <p>Shortness of breath or difficulty breathing</p>
@@ -78,7 +74,7 @@
       </br>
     </div>
 
-    <div class="column">
+    <div class="col-md-6">
       <h2>Prevention</h2>
       <div class="card">
         <img src="{% static 'assets/mask.png' %}" alt="Mask" style="width:10%; height: 10%;">
@@ -91,7 +87,8 @@
           <p>Clean and disinfect frequently touched objects and surfaces.</p>
           <p>Maintain at least 1 meter distance between yourself and other people, particularly those who are coughing,
             sneezing and have a fever.</p>
-          <p>Stay home and self-isolate even with minor symptoms such as cough, headache, mild fever, until you recover.</p>
+          <p>Stay home and self-isolate even with minor symptoms such as cough, headache, mild fever, until you recover.
+          </p>
           <p>Seeking medical attention incase of having fever, cough and difficulty in breathing.</p>
           <p>Wear a mask.</p>
         </div>
@@ -99,4 +96,5 @@
       </br>
     </div>
   </div>
+</div>
 </body>

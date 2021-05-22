@@ -3,7 +3,7 @@
 This website is used to spread awareness about covid-19 and also is used to predict whether the user has chances of getting infected by covid using his/her chest x-ray or a cough sample. 
 
 Prediction is done by training few machine learning models. 
-Enhancement of contract tracing by displaying alerts about public places that were visited by people who tested positive recently.
+Enhancement of contract tracing is done by displaying alerts about public places that were visited by people who tested positive recently.
 A data dashboard is included in the website to provide information about covid cases.
 
 This website includes 7 HTML pages namely aboutcovid, index, navbar, covid_dashboard, contact_tracing_alerts, detection, cough_sound_detection.

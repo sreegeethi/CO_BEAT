@@ -13,6 +13,11 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <title>Covid Detection</title>
+    <style>
+        #box-cont {
+            border: 2px solid #dbe9ee;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,8 +28,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-12">
                     <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="card-title">Upload X-RAY </h3>
+                        <div class="card-body" id="box-cont">
+                            <h3 class="card-title py-3">Upload X-RAY </h3>
                             <input type="file" name="sentFile" required accept="image/*" />
                             <input type="submit" name="submit" value="Upload" />
 
@@ -35,14 +40,15 @@
                             {% endif %}
 
 
-                            <p class="mt-3">Steps:<br>
-                                1.Select an image from your device using the Choose file/Browse button on the left and
+                            <p class="mt-5">Steps:<br>
+                                1. Select an X-RAY image from your device using the Choose file/Browse button on the
+                                left
+                                and
                                 then click on the
                                 Upload button.<br>
-                                2.The results will be displayed within a few seconds.<br><br>
+                                2. The result will be displayed within a few seconds.<br><br>
 
-                                Note: The result shown may not be correct always.Our model has an accuracy of 96%
-                                but is subject to failure for certain cases.
+                                Note: The result shown may not be correct always.
                                 Please continue to follow all the guidelines and stay safe!
                             </p>
                             </p>

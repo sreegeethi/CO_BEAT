@@ -12,24 +12,29 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <style>
+        #searchbar {
+            width: 400px;
+        }
     </style>
 </head>
 
 <body>
     {% include 'navbar.html' %}
 
-    <p class="font-weight-bold mt-3 pl-4">Contact tracing for COVID-19</p>
+    <div class="container">
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+        <p class="font-weight-bold mt-3">Contact tracing for COVID-19</p>
 
-        <div class="p-3">
-            <input id="searchtext" type="text" name="placeName" placeholder="Enter city/location">
-            <input type="submit" name="submit" value="Search">
-        </div>
-    </form>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
 
-    <div class="px-4">
+            <div class="input-group rounded mb-4" id="searchbar">
+                <input type="text" class="form-control rounded" name="placeName" placeholder="Search city/location" />
+                <input class="btn btn-primary" type="submit" name="submit" value="Search">
+            </div>
+        </form>
+
+
         <table class="table table-striped">
             <thead>
                 <tr>

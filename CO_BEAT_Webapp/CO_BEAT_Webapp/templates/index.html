@@ -13,10 +13,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-    <!--<link href="{% static 'css/styles.css' %}" rel="stylesheet" /> -->
     <style>
         body {
-            /* background-color: #56858a; */
             position: relative;
             min-height: 100vh;
         }
@@ -36,6 +34,10 @@
             width: 100%;
             border-radius: 0;
         }
+
+        #color-pink {
+            color: #3da5fa;
+        }
     </style>
 </head>
 
@@ -44,15 +46,15 @@
     <!-- Page Content-->
     <br><br>
     <div class="container">
-        <header class="jumbotron my-3">
-            <h1 class="display-4">Let's beat covid-19!</h1>
+        <header class="jumbotron my-2">
+            <h1 class="display-4" id="color-pink">Let's beat covid-19!</h1>
+
             <p class="lead">
-            <p class="font-weight-bold">Contact-Tracing for Covid-19</p>
-            If a person tests positive for COVID-19 contact tracing is done to find
-            persons who had come in contact with them to prevent further spreading in the community.Click the button
-            below to to find
-            venues
-            that people who were recently diagnosed with COVID-19 had been to.
+
+                <span class="font-weight-bold">Contact tracing for covid-19</span><br>
+                If a person tests positive for COVID-19 contact tracing is done to find
+                persons who had come in contact with them to prevent further spreading in the community.Click the button
+                below to find venues that people who were recently diagnosed with COVID-19 had been to.
             </p>
 
             <a class="btn btn-primary btn-lg" href="contact-tracing-alerts/">Check contact tracing alerts</a>

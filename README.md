@@ -16,7 +16,7 @@ Detection page is used to detect whether the user has a chance of getting tested
 
 Cough_sound_detection page is used to detect whether the user has a chance of getting tested positive for covid by taking a cough sample of the user as input.
 
-Contact_tracing_alerts page is used to know the places where the covid tested patients moved and will alert us.
+Contact_tracing_alerts page is used to know the places recently visited by people who tested positive and alerts us.
 
 Covid_dashboard page shows the covid-19 INDIA data which contains daywise confirmed, recovered and deaths and total cases in each state of country.
  

@@ -7,6 +7,7 @@ import numpy as np
 from tensorflow.keras.models import load_model
 from django.core.files.storage import default_storage
 import requests
+from CO_BEAT_Webapp.models import Alerts
 
 def home(request):
     return render(request,'index.html')
@@ -14,9 +15,21 @@ def home(request):
 def about_covid(request):
     return render(request,'aboutcovid.html')
 
+def contact_tracing(request):
+    if request.method=="POST":
+        place = request.POST['placeName']
+        alerts = Alerts.objects.filter(venue__contains=place).order_by('-time_date')
+    else:
+        alerts = Alerts.objects.order_by('-time_date')
+
+    data = {
+        "alert": alerts
+    }
+    return render(request,'contact_tracing_alerts.html', data)
+
 def cough_sound_pred(request):
     if request.method=="POST":
-        f=request.FILES['coughSound']
+        f = request.FILES['coughSound']
         response = {}
         file_name = default_storage.save(f.name, f)
         media_dir = os.path.dirname(os.path.dirname(__file__))+'/media'

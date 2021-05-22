@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Tracing Alerts</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+    <p class="font-weight-bold mt-3 pl-4">Contact tracing for COVID-19</p>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="p-3">
+            <input id="searchtext" type="text" name="placeName" placeholder="Enter city/location">
+            <input type="submit" name="submit" value="Search">
+        </div>
+    </form>
+
+    <div class="px-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Venue</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for a in alert %}
+                <tr>
+                    <td>{{ a.time_date}}</td>
+                    <td>{{ a.venue }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+
+
+</body>
+
+</html>

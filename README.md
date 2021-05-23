@@ -51,7 +51,7 @@ Django
 
 ## Process Flow
 
-![Image of Process Flow](ProcessDiagram.png)
+![Process Flow](Flowcharts/ProcessDiagram.png)
 
 ## Data Flow Diagram
 ![Screenshot](Flowcharts/dataflow_diagram.png)

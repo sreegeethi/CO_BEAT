@@ -5,7 +5,8 @@ A web application to fight covid-19 using Machine learning.
 Through CO-BEAT you can find information about covid-19 - symptoms and prevention measures, 
 get an overview of covid cases in India using the dashboard, view contact tracing alerts, predict covid-19 from chest x-ray and cough sound.
 
-### Description
+## Description
+
 
 * **index.html** - home page which contains links to all the other pages.
 * **aboutcovid.html** - contains symptoms and preventive measures for Covid.
@@ -24,6 +25,14 @@ Method1 is using PyAudioanalysis and Method2 is with a neural network model.The 
     3. Fine tuning pre-trained Densenet121 for classification.This model was used in website.
 
 ### Software Requirements
+Keras  
+Tensorflow version 2.4.1  
+Sklearn version 0.23.1  
+PyAudioAnalysis  
+Python  
+Numpy  
+Django  
+
 
 ### Process Flow
 

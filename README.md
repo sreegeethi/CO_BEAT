@@ -35,8 +35,8 @@ Training : 2017 samples, Testing : 252 samples
 
     | Method | Accuracy (Classification as Covid or non-covid) |
     | --- | --- |
-    | Densenet121 with SVM | 96.16% |
-    | Densenet169 with SVM | 96.45% |
+    | Densenet121(Feature extraction) + SVM | 96.16% |
+    | Densenet169(Feature extraction) + SVM | 96.45% |
     | Densenet121 fine tuned | 95.93% |  
 
 ## Software Requirements

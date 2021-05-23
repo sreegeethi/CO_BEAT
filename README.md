@@ -1,4 +1,4 @@
-# C0-BEAT
+# CO-BEAT
 
 A web application to fight covid-19 using Machine learning.
 

@@ -51,7 +51,7 @@ Django
 
 ## Process Flow
 
-![Image of Process FLow](C:\Users\sreeg\ProcessDiagram.png)
+![Image of Process Flow](ProcessDiagram.png)
 
 ## Data Flow Diagram
 

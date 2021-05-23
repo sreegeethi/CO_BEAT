@@ -52,6 +52,7 @@ Django
 ## Process Flow
 
 ## Data Flow Diagram
+![Screenshot](Flowcharts/dataflow_diagram.png)
 
 ## References
 

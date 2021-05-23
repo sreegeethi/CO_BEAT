@@ -61,8 +61,8 @@ Django
 https://arxiv.org/abs/2011.13320  
 https://www.pyimagesearch.com/2019/02/04/keras-multiple-inputs-and-mixed-data/  
 https://pypi.org/project/audiomentations/  
-https://corona-virus-world-and-india-data.p.rapidapi.com/api_india
-https://api.covid19india.org/
-https://datamaps.github.io/
+https://corona-virus-world-and-india-data.p.rapidapi.com/api_india   
+https://api.covid19india.org/   
+https://datamaps.github.io/   
 
 

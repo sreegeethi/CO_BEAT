@@ -1,22 +1,33 @@
-# Covid-website
+# C0-BEAT
 
-This website is used to spread awareness about covid-19, dashborad of covid-19 INDIA and also is used to predict whether the user has chances of getting infected by covid using his/her chest x-ray or a cough sample. 
+A web application to fight covid-19 using Machine learning.
 
-Prediction is done by training few machine learning models. 
-Enhancement of contract tracing is done by displaying alerts about public places that were visited by people who tested positive recently.
-A data dashboard is included in the website to provide information about covid cases.
+Through CO-BEAT you can find information about covid-19 - symptoms and prevention measures, 
+get an overview of covid cases in India using the dashboard, view contact tracing alerts, predict covid-19 from chest x-ray and cough sound.
 
-This website includes 7 HTML pages namely aboutcovid, index, navbar, covid_dashboard, contact_tracing_alerts, detection, cough_sound_detection.
+### Description
 
-About covid page contains symptoms and preventive measures for Covid.
+* **index.html** - home page which contains links to all the other pages.
+* **aboutcovid.html** - contains symptoms and preventive measures for Covid.
+* **contact_tracing_alerts.html** - displays a table with venues and datetime of places visited by people who tested positive.Data is fetched from the sqlite3 database.
+* **cough_sound_detection.html** - takes audio input and detects the presence of coronavirus.
+* **covid_dashboard.html** - shows the covid-19 INDIA data which contains daywise confirmed, recovered and deaths and total cases in each state of country
+* **detection.html** - takes chest xray as input and detects coronavirus.
 
-Index page is the homepage of the website, which contains links to all the other pages.
+* **Cough-sound-based-prediction** folder has algorithms used to detect covid from cough sound.
+Method1 is using PyAudioanalysis and Method2 is with a neural network model.The former had higher accuracy and was used for prediction in the website.
 
-Detection page is used to detect whether the user has a chance of getting tested positive for covid by taking chest x-ray of the user as input.
+* **Covid-Prediction-Chest-Xray** folder has the code from generating models using 3 ways
 
-Cough_sound_detection page is used to detect whether the user has a chance of getting tested positive for covid by taking a cough sample of the user as input.
+    1. Using pre-trained Densenet121 for feature extraction followed by svm for classification
+    2. Using pre-trained Densenet169 for feature extraction followed by svm for classification
+    3. Fine tuning pre-trained Densenet121 for classification.This model was used in website.
 
-Contact_tracing_alerts page is used to know the places recently visited by people who tested positive and alerts us.
+### Software Requirements
 
-Covid_dashboard page shows the covid-19 INDIA data which contains daywise confirmed, recovered and deaths and total cases in each state of country.
- 
+### Process Flow
+
+### Data Flow Diagram
+
+### References
+

@@ -15,7 +15,7 @@ get an overview of covid cases in India using the dashboard, view contact tracin
 * **detection.html** - takes chest xray as input and detects coronavirus.
 
 * **Cough-sound-based-prediction** folder has algorithms used to detect covid from cough sound.
-Method1 is using PyAudioanalysis and Method2 is with a neural network model.The former had higher accuracy and was used for prediction in the website.
+Method-1 is using PyAudioanalysis and Method-2 is with a neural network model.The former had higher accuracy and was used for prediction in the website.
 The datasets used were COUGHVID and COSWARA. As the number of covid cough sound samples were less, data augmentation was done using Audiomentations library.  
 Training : 2017 samples, Testing : 252 samples, Validation 252 samples
 
@@ -24,7 +24,7 @@ Training : 2017 samples, Testing : 252 samples, Validation 252 samples
     | PyAudioAnalysis with SVM | 74% |
     | Neural network | 67% |  
   
-* **Covid-Prediction-Chest-Xray** folder has the code from generating models using 3 ways
+* **Covid-Prediction-Chest-Xray** folder has the code for generating models using 3 ways:
 
     1. Using pre-trained Densenet121 for feature extraction followed by svm for classification
     2. Using pre-trained Densenet169 for feature extraction followed by svm for classification

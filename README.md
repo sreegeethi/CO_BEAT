@@ -17,7 +17,7 @@ get an overview of covid cases in India using the dashboard, view contact tracin
 * **Cough-sound-based-prediction** folder has algorithms used to detect covid from cough sound.
 Method1 is using PyAudioanalysis and Method2 is with a neural network model.The former had higher accuracy and was used for prediction in the website.
 The datasets used were COUGHVID and COSWARA. As the number of covid cough sound samples were less, data augmentation was done using Audiomentations library.  
-Training : 2017 samples, Testing : 252 samples
+Training : 2017 samples, Testing : 252 samples, Validation 252 samples
 
     | Method | Accuracy |
     | --- | --- |
